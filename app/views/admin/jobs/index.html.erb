@@ -6,17 +6,17 @@
     <thead>
       <tr>
         <td>#</td>
-        <td>Title</td>
+        <th>Title</th>
         <td>Description</td>
         <td>Wage</td>
-        <th>Last Update</th>
+        <td>Last Update</td>
       </tr>
     </thead>
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
           <td>#</td>
-          <td><%= link_to(job.title, admin_job_path(job)) %></td>
+          <td><%= render_job_status(job) %> <%= link_to(job.title, admin_job_path(job)) %></td>
           <td><%= job.description %></td>
           <td><%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %></td>
           <td> <%= job.updated_at %> </td>
