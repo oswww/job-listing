@@ -1,23 +1,35 @@
 <div class="col-md-12">
-  <div class="job">
-    <%= link_to("New job", new_job_path, class: "btn btn-primary pull-right") %>
+  <div class="dropdown clearfix pull-right">
+    <button class="btn btn-default dropdown-toggle"
+            type="button" id="dropdownMenuDivider"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Sort by
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+      <li> <%= link_to("Min Wage", jobs_path(:order => "by_lower_bound")) %> </li>
+      <li> <%= link_to("Max Wage", jobs_path(:order => "by_upper_bound")) %> </li>
+      <li> <%= link_to("Update Time", jobs_path) %> </li>
+    </ul>
   </div>
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>#</td>
-        <th>Title</th>
-        <td>Description</td>
-        <td>Last Update</td>
+        <th> # </th>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Wage </th>
+        <th> Publish Time </th>
       </tr>
     </thead>
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
-          <td>#</td>
-          <td><%= link_to(job.title, job_path(job)) %></td>
-          <td><%= job.description %></td>
-          <td><%= job.updated_at %></td>
+          <td> #</td>
+          <td> <%= link_to(job.title, job_path(job)) %> </td>
+          <td> <%= job.description %> </td>
+          <td> <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </td>
+          <td> <%= job.created_at %> </td>
           <% if current_user %>
             <td>
                 <%= link_to("Welcome", welcome_index_path, class: "btn btn-xs btn-default")%>

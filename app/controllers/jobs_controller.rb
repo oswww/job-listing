@@ -4,7 +4,14 @@ class JobsController < ApplicationController
   before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @jobs = Job.where(:is_hidden => false).recent
+    @jobs = case params[:order]
+    when "by_lower_bound"
+      Job.published.order_by_wage_lower_bound
+    when "by_upper_bound"
+      Job.published.order_by_wage_upper_bound
+    else
+      Job.published.recent
+    end
   end
 
   def show
