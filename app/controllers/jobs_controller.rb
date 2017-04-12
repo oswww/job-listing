@@ -59,6 +59,10 @@ class JobsController < ApplicationController
   end
 
   def check_admin
+    unless current_user.admin?
+      flash[:alert] = 'You are not admin'
+      redirect_to root_path
+    end
   end
 
   def job_params
