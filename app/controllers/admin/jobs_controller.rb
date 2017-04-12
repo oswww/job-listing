@@ -1,7 +1,8 @@
 class Admin::JobsController < ApplicationController
-  before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_job, only: [:show, :edit, :update, :destroy, :publish, :hide]
+  before_action :authenticate_user!
   before_action :require_is_admin
+  before_action :find_job, only: [:show, :edit, :update, :destroy, :publish, :hide]
+
   layout "admin"
 
   def index
@@ -9,6 +10,7 @@ class Admin::JobsController < ApplicationController
   end
 
   def show
+    @resumes = @job.resumes.order('created_at DESC')
   end
 
   def edit

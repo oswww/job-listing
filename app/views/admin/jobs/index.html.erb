@@ -5,21 +5,23 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>#</td>
-        <th>Title</th>
-        <td>Description</td>
-        <td>Wage</td>
-        <td>Last Update</td>
+        <th> # </th>
+        <th> Title </th>
+        <th> Description </th>
+        <th> Resume Count </th>
+        <th> Wage </th>
+        <th> Admin Crol </th>
+        <th> Last Update </th>
       </tr>
     </thead>
     <tbody>
       <% @jobs.each do |job| %>
         <tr>
-          <td>#</td>
-          <td><%= render_job_status(job) %> <%= link_to(job.title, admin_job_path(job)) %></td>
-          <td><%= job.description %></td>
-          <td><%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %></td>
-          <td> <%= job.updated_at %> </td>
+          <td> # </td>
+          <td> <%= render_job_status(job) %> <%= link_to(job.title, admin_job_path(job)) %> </td>
+          <td> <%= job.description %> </td>
+          <td> <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
+          <td> <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </td>
           <% if current_user && current_user.admin? %>
             <td>
                 <%= link_to("Edit", edit_admin_job_path(job), class: "btn btn-xs btn-default")%>
@@ -32,6 +34,7 @@
                 <% end %>
             </td>
           <% end %>
+          <td> <%= job.updated_at %> </td>
         </tr>
       <% end %>
     </tbody>

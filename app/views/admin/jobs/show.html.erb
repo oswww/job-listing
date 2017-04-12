@@ -2,6 +2,12 @@
   <div class="job">
 
   </div>
-  <h2><%= @job.title %></h2>
-  <p><%= @job.description %></p>
+  <h2> <%= @job.title %> </h2>
+  <p> Wage: <%= @job.wage_lower_bound %> ~ <%= @job.wage_upper_bound %> </p>
+  <p> <%= @job.description %> </p>
+
+  <h5> resumes </h5>
+  <hr>
+  <%= render :partial => "admin/resumes/resume", :collection => @resumes, :as => :resume %>
+
 </div>
