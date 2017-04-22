@@ -3,8 +3,6 @@ class Admin::JobsController < ApplicationController
   before_action :require_is_admin
   before_action :find_job, only: [:show, :edit, :update, :destroy, :publish, :hide]
 
-  layout "admin"
-
   def index
     @jobs = Job.all
   end
@@ -71,6 +69,5 @@ class Admin::JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
   end
-
 
 end

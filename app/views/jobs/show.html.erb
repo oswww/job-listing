@@ -1,12 +1,14 @@
-<div class="col-md-12">
-  <div class="job">
+<div class="mdl-grid">
+  <div class="col-center mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
-  </div>
-  <h2> <%= @job.title %> </h2>
-  <p> Wage: <%= @job.wage_lower_bound %> ~ <%= @job.wage_upper_bound %> </p>
-  <p> <%= @job.description %> </p>
 
-  <div class="text-center">
-    <%= link_to("投交履历", new_job_resume_path(@job), :style => "font-size: 30px; text-decoration:underline;") %>
+    <h2> <%= @job.title %> </h2>
+    <p> Wage: <%= @job.wage_lower_bound %> ~ <%= @job.wage_upper_bound %> </p>
+    <p> <%= @job.description %> </p>
+
+    <center>
+      <%= link_to("Submit Resume", new_job_resume_path(@job), style:"zoom: 200%;",
+          class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent") %>
+    </center>
   </div>
 </div>

@@ -1,0 +1,6 @@
+<%= link_to("Jobs", jobs_path, class: "mdl-navigation__link") %>
+<% if current_user && current_user.admin? %>
+    <%= link_to("Admin", admin_jobs_path, class: "mdl-navigation__link") %> </li>
+<% end %>
+<a class="mdl-navigation__link" href="http://www.google.com">Useful</a>
+<a class="mdl-navigation__link" href="http://www.facebook.com">Links</a>

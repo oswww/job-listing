@@ -15,10 +15,69 @@
  *= require_self
  */
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
  @import "font-awesome";
  @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+ // Variables and mixins
+@import "material/variables";
+@import "material/mixins";
+
+// Resets and dependencies
+@import "material/resets";
+@import "material/typography";
+
+// Components
+@import "material/palette";
+@import "material/ripple";
+@import "material/animation";
+@import "material/badge";
+@import "material/button";
+@import "material/card";
+@import "material/checkbox";
+@import "material/chip";
+@import "material/data-table";
+@import "material/dialog";
+@import "material/mega_footer";
+@import "material/mini_footer";
+@import "material/icon-toggle";
+@import "material/list";
+@import "material/menu";
+@import "material/progress";
+@import "material/layout";
+@import "material/radio";
+@import "material/slider";
+@import "material/snackbar";
+@import "material/spinner";
+@import "material/switch";
+@import "material/tabs";
+@import "material/textfield";
+@import "material/tooltip";
+@import "material/shadow";
+@import "material/grid";
+@import "material/material-icons";
+@import "material/roboto";
+
+.mdl-data-table, .col-center {
+  margin: auto;
+}
+
+.mdl-button-xs {
+  zoom: 70%;
+}
+
+.mdl-menu__item {
+  text-decoration: none
+}
+
+.mdl-grid .add-on-layer {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 30px;
+    margin-top: 30px;
+    z-index: 900;
+}
+
 
  .container-fluid .jumbotron{
    padding-bottom: 110px;//内部的底部边距，这样按钮不会很靠近底部了
@@ -53,43 +112,43 @@
     border-bottom-left-radius: 3px;//左下角圆边
 }
 
- .title {
+.title {
    background-color: rgba(250, 250, 250, 0.39);//背景颜色含透明度
    max-width: 500px;//最大宽度
    margin-top: 200px;//和顶部拉开距离
    margin-bottom: 0;//这样就可以紧接息面的描述文字
    border-top-right-radius: 3px;//右上角圆边
    border-top-left-radius: 3px;//左上角圆边
- }
-
- .btn-danger {
-     color: #fff;//字体颜色
-     background-color: #EF6C00;//背景颜色
-     border-color: #EF6C00;//边框颜色
- }
-
- .btn-danger:hover {
-     background-color: #E65100;//鼠标放置在btn上的背景颜色
-     border-color: #E65100;//鼠标放置在btn上的边框颜色
- }
-
- .btn-lg, .btn-group-lg > .btn {
-    padding: 8px 16px;//通过padding来决定btn的大小
-    font-size: 20px;//btn文字大小
-    letter-spacing: 3px;//调整文字间距
-    border-radius: 3px;//btn圆角
-    width: 200px;//这里用指定宽度把btn拉得更长
 }
 
- .slogan {
+.btn-danger {
+   color: #fff;//字体颜色
+   background-color: #EF6C00;//背景颜色
+   border-color: #EF6C00;//边框颜色
+}
+
+.btn-danger:hover {
+   background-color: #E65100;//鼠标放置在btn上的背景颜色
+   border-color: #E65100;//鼠标放置在btn上的边框颜色
+}
+
+.btn-lg, .btn-group-lg > .btn {
+   padding: 8px 16px;//通过padding来决定btn的大小
+   font-size: 20px;//btn文字大小
+   letter-spacing: 3px;//调整文字间距
+   border-radius: 3px;//btn圆角
+   width: 200px;//这里用指定宽度把btn拉得更长
+}
+
+.slogan {
    margin-top: 10px;
    margin-bottom: 50px;
    text-align: center;
    color: white;
    top: 12px;
- }
+}
 
- .lead {
+.lead {
    margin-bottom: 60px;
    text-align: center;
    color: white;

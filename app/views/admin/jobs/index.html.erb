@@ -1,16 +1,25 @@
-<div class="col-md-12">
-  <div class="job">
-    <%= link_to("New job", new_admin_job_path, class: "btn btn-primary pull-right") %>
+<div class="mdl-grid">
+  <div class="add-on-layer">
+    <!-- Colored FAB button with ripple -->
+    <a href="/admin/jobs/new">
+      <button id="new-job-button" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+        <i class="material-icons">add</i>
+      </button>
+    </a>
+    <div class="mdl-tooltip" for="new-job-button">
+      Create New Job
+    </div>
   </div>
-  <table class="table table-boldered table-striped custab" >
+
+  <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
       <tr>
         <th> # </th>
-        <th> Title </th>
-        <th> Description </th>
+        <th class="mdl-data-table__cell--non-numeric"> Title </th>
+        <th class="mdl-data-table__cell--non-numeric"> Description </th>
         <th> Resume Count </th>
         <th> Wage </th>
-        <th> Admin Crol </th>
+        <th class="mdl-data-table__cell--non-numeric"> Admin Crol </th>
         <th> Last Update </th>
       </tr>
     </thead>
@@ -18,19 +27,22 @@
       <% @jobs.each do |job| %>
         <tr>
           <td> # </td>
-          <td> <%= render_job_status(job) %> <%= link_to(job.title, admin_job_path(job)) %> </td>
-          <td> <%= job.description %> </td>
-          <td> <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
+          <td class="mdl-data-table__cell--non-numeric"> <%= render_job_status(job) %> <%= link_to(job.title, admin_job_path(job)) %> </td>
+          <td class="mdl-data-table__cell--non-numeric"> <%= job.description[0..40].gsub(/\s\w+$/,'...') %> </td>
+          <td > <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
           <td> <%= job.wage_lower_bound %> ~ <%= job.wage_upper_bound %> </td>
           <% if current_user && current_user.admin? %>
-            <td>
-                <%= link_to("Edit", edit_admin_job_path(job), class: "btn btn-xs btn-info")%>
-                <%= link_to("Delete", admin_job_path(job),    class: "btn btn-xs btn-danger",
-                            method: :delete, data: { confirm: "Are you sure?" } )%>
+            <td class="mdl-data-table__cell--non-numeric">
+                <%= link_to("Edit", edit_admin_job_path(job),
+                    class: "mdl-button mdl-button-xs mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect")%>
+                <%= link_to("Delete", admin_job_path(job), method: :delete, data: { confirm: "Are you sure?" } ,
+                    class: "mdl-button mdl-button-xs mdl-button--accent mdl-js-button mdl-button--raised mdl-js-ripple-effect")%>
                 <% if job.is_hidden %>
-                  <%= link_to("Publish", publish_admin_job_path(job) , :method => :post, :class => "btn btn-xs btn-success") %>
+                  <%= link_to("Publish", publish_admin_job_path(job), method: :post,
+                    class: "mdl-button mdl-button-xs mdl-js-button mdl-button--raised mdl-js-ripple-effect") %>
                 <% else %>
-                  <%= link_to("Hide", hide_admin_job_path(job), :method => :post,  :class => "btn btn-xs btn-warning") %>
+                  <%= link_to("Hide", hide_admin_job_path(job), method: :post,
+                    class: "mdl-button mdl-button-xs mdl-button--primary mdl-js-button mdl-js-ripple-effect") %>
                 <% end %>
             </td>
           <% end %>

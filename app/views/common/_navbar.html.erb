@@ -1,71 +1,48 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/"><img src='<%= image_url 'logo.png' %>' ><i class="fa fa-diamond" aria-hidden="true">真·24K Offer</i></a>
-        </div>
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <!-- Title -->
+    <span class="mdl-layout-title">
+      <i class="large material-icons" style="vertical-align: text-bottom">whatshot</i>
+      <%= link_to("Fantastic Offer", "/", href:"/", style:"text-decoration: none; color: white;") %>
+    </span>
+    <!-- Add spacer, to align navigation to the right -->
+    <div class="mdl-layout-spacer"></div>
+    <!-- Navigation. We hide it in small screens. -->
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <%= render "common/navigation_links" %>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <% if !current_user %>
-              <li><a href="#" data-toggle="modal" data-target="#signup-modal">注册</a></li>
-              <li><a href="#" data-toggle="modal" data-target="#login-modal">登入</a></li>
-            <% else %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    Hi!, <%= current_user.email %>
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <% if current_user && current_user.admin? %>
-                    <li> <%= link_to("Admin", admin_jobs_path) %></li>
-                    <li class="divider"> </li>
-                  <% end %>
-                  <li> <%= link_to("退出", destroy_user_session_path, method: :delete) %> </li>
-                </ul>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+      <% if !current_user %>
+        <a class="mdl-navigation__link" href="/users/sign_up">Sign up</a>
+        <a class="mdl-navigation__link" href="/users/sign_in">Log in</a>
+      <% else %>
+        Hi!, <%= current_user.email %>
 
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog" role="document">
-    <div class="loginmodal-container">
-       <h2>Log in</h2>
-       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-         <div class="form-inputs">
-           <%= f.input :email, required: false, autofocus: true %>
-           <%= f.input :password, required: false %>
-           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-         </div>
-         <div class="form-actions">
-           <%= f.button :submit, "Log in" %>
-         </div>
-       <% end %>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
-    <div class="loginmodal-container">
-      <h2>Sign up</h2>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.input :email, required: true, autofocus: true %>
-          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-          <%= f.input :password_confirmation, required: true %>
-        </div>
-        <div class="form-actions">
-            <%= f.button :submit, "Sign up" %>
-        </div>
+        <button id="navi-menu-lower-right"
+                class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+            for="navi-menu-lower-right">
+          <% if current_user && current_user.admin? %>
+            <%= link_to("Admin", admin_jobs_path, class: "mdl-menu__item") %>
+            <li><hr></li>
+          <% end %>
+          <%= link_to("Sign out", destroy_user_session_path, method: :delete, class: "mdl-menu__item") %>
+        </ul>
       <% end %>
-    </div>
+    </nav>
   </div>
+</header>
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title">Title</span>
+  <nav class="mdl-navigation">
+    <%= render "common/navigation_links" %>
+    <hr>
+    <% if !current_user %>
+      <a class="mdl-navigation__link" href="/users/sign_up">Sign up</a>
+      <a class="mdl-navigation__link" href="/users/sign_in">Log in</a>
+    <% else %>
+      <%= link_to("Sign out", destroy_user_session_path, method: :delete, class: "mdl-navigation__link") %>
+    <% end %>
+  </nav>
 </div>

@@ -1,11 +1,26 @@
-<h3> 投交履历到 <%= @job.title %> </h3>
+<div class="mdl-grid">
+  <div class="col-center">
+    <h3> Submit Resumt to: <%= @job.title %> </h3>
 
-<hr>
+    <hr>
 
-<%= simple_form_for [@job, @resume] do |f| %>
-  <div class="form-job">
-    <%= f.input :content, input_html: { class: "form-control"} %>
-    <%= f.input :attachment, input_html: { class: "form-control"} %>
+    <%= form_for [@job, @resume] do |f| %>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <%= f.text_area :content,
+            class: "mdl-textfield__input string optional form-control", type:"string", required:"required" %>
+        <%= f.label "Content",
+            class: "mdl-textfield__label string optional control-label" %>
+        <span class="mdl-textfield__error">Can't be empty</span>
+      </div><br>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+        <%= f.file_field :attachment, placeholder:"Attachment", type:"file",
+            class: "mdl-textfield__input form-control dl-button mdl-button--primary"%>
+      </div><br>
+
+      <%= f.submit "Submit", data: { disable_with: "Submiting..." },
+          class: "mdl-button  mdl-button--primary mdl-js-button mdl-button--raised mdl-js-ripple-effect" %>
+    <% end %>
   </div>
-  <%= f.submit "送出", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
-<% end %>
+</div>

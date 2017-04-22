@@ -1,13 +1,13 @@
-<div class="col-md-12">
-  <div class="job">
+<div class="mdl-grid">
+  <div class="col-center mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 
+
+    <h2> <%= @job.title %> </h2>
+    <p> Wage: <%= @job.wage_lower_bound %> ~ <%= @job.wage_upper_bound %> </p>
+    <p> <%= @job.description %> </p>
+
+    <h5> Resumes </h5>
+    <hr>
+    <%= render :partial => "admin/resumes/resume", :collection => @resumes, :as => :resume %>
   </div>
-  <h2> <%= @job.title %> </h2>
-  <p> Wage: <%= @job.wage_lower_bound %> ~ <%= @job.wage_upper_bound %> </p>
-  <p> <%= @job.description %> </p>
-
-  <h5> resumes </h5>
-  <hr>
-  <%= render :partial => "admin/resumes/resume", :collection => @resumes, :as => :resume %>
-
 </div>
